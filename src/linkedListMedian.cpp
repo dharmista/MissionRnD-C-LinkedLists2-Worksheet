@@ -20,5 +20,14 @@ struct node {
 };
 
 int linkedListMedian(struct node *head) {
-	return -1;
+	if (head == NULL)
+		return -1;
+	node * ptr1 = head, *ptr2 = head;
+	while (ptr2->next != NULL){								//For odd numbered Linked-List
+		if (ptr2->next->next == NULL)						//For even numbered Linekd-List
+			return ((ptr1->num + ptr1->next->num) / 2);
+		ptr1 = ptr1->next;
+		ptr2 = ptr2->next->next;
+	}
+	return ptr1->num;
 }
