@@ -12,6 +12,7 @@ NOTES:
 */
 
 #include <stdio.h>
+#include<stdlib.h>
 
 struct node {
 	int num;
@@ -21,13 +22,49 @@ struct node {
 struct node * merge2LinkedLists(struct node *head1, struct node *head2) {
 	if (head1 == NULL)return head2;
 	if (head2 == NULL)return head1;
-	while (head2 != NULL){
-		while (head1->num <= head2->num)
-			head1 = head1->next;
-		node * temp = head2->next;
-		head2->next = head1->next;
-		head1->next = head2;
-		head2 = temp;
+	node * temp2 = NULL;
+	node * ans = NULL;
+	node * k = NULL;
+	bool compl = false;
+	while (!compl){
+		if (head1->num < head2->num){
+			if (ans == NULL)
+			{
+				ans = (node *)malloc(sizeof(node));
+				k = ans;
+				ans->num = head1->num;
+				ans->next = NULL;
+				head1 = head1->next;
+			}
+			else{
+				ans->next = head1;
+				head1 = head1->next;
+				ans = ans->next;
+			}
+		}
+		else{
+			if (ans == NULL)
+			{
+				ans = (node *)malloc(sizeof(node));
+				k = ans;
+				ans->num = head2->num;
+				ans->next = NULL;
+				head2 = head2->next;
+			}
+			else{
+				ans->next = head2;
+				head2 = head2->next;
+				ans = ans->next;
+			}
+		}
+		if (head1 == NULL){
+			ans->next = head2;
+			compl = true;
+		}
+		if (head2 == NULL){
+			ans->next = head1;
+			compl = true;
+		}
 	}
-	return head1;
+	return k;
 }

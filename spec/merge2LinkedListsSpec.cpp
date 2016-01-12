@@ -68,6 +68,6 @@ namespace spec
 			Assert::IsTrue(compare(merge2LinkedLists(createList(246), createList(135)), 123456), L"Merge linked lists equal length case failed.", LINE_INFO());
 			Assert::IsTrue(compare(merge2LinkedLists(createList(125), createList(237)), 122357), L"Merge linked lists equal length case failed.", LINE_INFO());
 			Assert::IsTrue(compare(merge2LinkedLists(createList(146), createList(468)), 144668), L"Merge linked lists equal length case failed.", LINE_INFO());
-		}
+		}	
 	};
 }
